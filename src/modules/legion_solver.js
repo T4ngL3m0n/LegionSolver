@@ -378,20 +378,11 @@ class LegionSolver {
 
     pause() {
         this.time -= new Date().getTime();
-        if (this.iterations != 0) {
-            document.getElementById("iterations").style.visibility = 'visible';
-            document.getElementById("iterationsValue").innerText = `${this.iterations}`;
-
-            document.getElementById("time").style.visibility = 'visible';
-            document.getElementById("timeValue").innerText = `${-this.time}ms`;
-        }
         this.pausePromise = new Promise(resolve => this.pauseResolve = resolve);
     }
 
     continue() {
         this.time += new Date().getTime();
-        document.getElementById("iterations").style.visibility = 'hidden';
-        document.getElementById("time").style.visibility = 'hidden';
         this.pauseResolve();
         this.pausePromise = null;
     }
